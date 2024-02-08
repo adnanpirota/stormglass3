@@ -48,7 +48,7 @@ class Stormglass::Hour
     @src.keys.collect(&:underscore).zip(vals).to_h[attribute.to_s]
   end
 
-  def fetch_value(data_source: nil, attribute:, unit_type: nil)
+  def fetch_value(data_source: nil, unit_type: nil, attribute:)
     data_source ||= Stormglass.settings.source
     @src.values.collect do |val|
       if val.is_a?(String)
