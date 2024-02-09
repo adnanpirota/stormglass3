@@ -49,6 +49,7 @@ class Stormglass::Hour
   end
 
   def fetch_value(data_source: nil, unit_type: nil, attribute:)
+    Rails.logger.info("Hour:: data_source #{data_source}, unit_type: #{unit_type}, attribute: #{attribute}")
     data_source ||= Stormglass.settings.source
     @src.values.collect do |val|
       if val.is_a?(String)
