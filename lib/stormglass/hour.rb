@@ -46,7 +46,7 @@ class Stormglass::Hour
   def get_value(attribute,args)
     Rails.logger.info("Hour::get_value => attribute: #{attribute}, args: #{args}")
     #vals = fetch_value(args.first ? {attribute: attribute}.merge(args.first) : attribute: attribute)
-    vals = fetch_value(data_source: args[:data_source], unit_type: args[:unit_type], attribute: attribute)
+    vals = fetch_value(data_source: args[0], unit_type: args[1], attribute: attribute)
     @src.keys.collect(&:underscore).zip(vals).to_h[attribute.to_s]
   end
 
