@@ -44,14 +44,11 @@ class Stormglass::Hour
   # data_source: - data source to use. (default 'sg')
   # unit_type:   - preferred unit type (default API result)
   def get_value(attribute,args)
-    Rails.logger.info("Hour::get_value => attribute: #{attribute}, args: #{args}")
-    #vals = fetch_value(args.first ? {attribute: attribute}.merge(args.first) : attribute: attribute)
     vals = fetch_value(data_source: args[0], unit_type: args[1], attribute: attribute)
     @src.keys.collect(&:underscore).zip(vals).to_h[attribute.to_s]
   end
 
   def fetch_value(data_source: nil, unit_type: nil, attribute:)
-    Rails.logger.info("Hour::fetch_value => data_source: #{data_source}, unit_type: #{unit_type}, attribute: #{attribute}")
     data_source ||= Stormglass.settings.source
     @src.values.collect do |val|
       if val.is_a?(String)
